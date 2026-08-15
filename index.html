@@ -1,314 +1,570 @@
-
-  
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Madhulika Tirupatipanya Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
-  <!-- Add this script tag for html2pdf.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
-
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Madhulika Tirupatipanya — Automation & Solution Design professional specializing in Power Platform, SQL, VBA, Power BI, application integration and AI/ML.">
+  <meta name="theme-color" content="#08111f">
+  <title>Madhulika Tirupatipanya | Automation & Solution Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f1f1f1;
+    :root{
+      --bg:#07111f;
+      --bg2:#0b1728;
+      --panel:rgba(15,28,48,.68);
+      --panel-solid:#0f1c30;
+      --text:#f4f7fb;
+      --muted:#aab8cc;
+      --line:rgba(255,255,255,.10);
+      --accent:#68d5ff;
+      --accent2:#9b8cff;
+      --good:#8be3ba;
+      --shadow:0 24px 80px rgba(0,0,0,.28);
+      --radius:24px;
+      --max:1180px;
     }
-
-    #top-bar {
-      background-color: #333;
-      color: #fff;
-      text-align: right;
-      padding: 10px;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(104,213,255,.13), transparent 28%),
+        radial-gradient(circle at 86% 18%, rgba(155,140,255,.11), transparent 28%),
+        linear-gradient(180deg,var(--bg) 0%, var(--bg2) 52%, #07111f 100%);
+      font-family:"DM Sans",system-ui,sans-serif;
+      line-height:1.6;
     }
-
-    #btnDownloadPDF {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 4px;
+    body::before{
+      content:"";
+      position:fixed; inset:0; pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(to bottom,black,transparent 78%);
+      z-index:-1;
     }
-
-    #dvContainer {
-      margin: 20px;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--max),92vw);margin:0 auto}
+    .nav{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(18px);
+      background:rgba(7,17,31,.70);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:.02em}
+    .brand span{color:var(--accent)}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a{font-size:.92rem;color:var(--muted);transition:.2s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{
+      padding:10px 16px;border:1px solid rgba(104,213,255,.38);
+      background:rgba(104,213,255,.08);border-radius:999px;color:var(--text)!important;
+    }
+    .mobile-menu{display:none;background:none;border:0;color:var(--text);font-size:1.35rem}
+    section{scroll-margin-top:94px}
+    .hero{padding:92px 0 68px}
+    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:58px;align-items:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border:1px solid rgba(139,227,186,.2);
+      background:rgba(139,227,186,.07);border-radius:999px;
+      color:var(--good);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase
+    }
+    .eyebrow i{width:7px;height:7px;background:var(--good);border-radius:50%;box-shadow:0 0 14px var(--good)}
+    h1,h2,h3{font-family:"Space Grotesk",sans-serif;margin:0}
+    .hero h1{font-size:clamp(3rem,7vw,5.7rem);line-height:.98;letter-spacing:-.05em;margin:22px 0}
+    .hero h1 span{
+      background:linear-gradient(90deg,#fff 5%,#bfeaff 60%,#c7bdff);
+      -webkit-background-clip:text;background-clip:text;color:transparent
+    }
+    .hero-copy{font-size:1.12rem;color:var(--muted);max-width:680px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      padding:13px 18px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(255,255,255,.035);font-weight:700;transition:.2s transform,.2s background,.2s border-color
+    }
+    .btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.07)}
+    .btn-primary{background:linear-gradient(135deg,rgba(104,213,255,.18),rgba(155,140,255,.18));border-color:rgba(104,213,255,.34)}
+    .meta-row{display:flex;gap:24px;flex-wrap:wrap;margin-top:24px;color:var(--muted);font-size:.9rem}
+    .meta-row span{display:inline-flex;align-items:center;gap:7px}
+    .hero-visual{position:relative;min-height:510px}
+    .portrait-card{
+      position:absolute;right:0;top:0;width:min(430px,90%);
+      background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+      border:1px solid var(--line);border-radius:30px;padding:12px;
+      box-shadow:var(--shadow);transform:rotate(2deg)
+    }
+    .portrait-card img{height:480px;width:100%;object-fit:cover;object-position:center 18%;border-radius:22px}
+    .float-card{
+      position:absolute;left:0;bottom:30px;width:250px;padding:18px;
+      border:1px solid rgba(104,213,255,.2);background:rgba(10,23,40,.86);
+      border-radius:20px;box-shadow:var(--shadow);backdrop-filter:blur(12px)
+    }
+    .float-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+    .float-value{font-family:"Space Grotesk";font-size:1.25rem;font-weight:700;margin-top:5px}
+    .stats{padding:12px 0 54px}
+    .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.025)}
+    .stat{padding:25px 24px;border-right:1px solid var(--line)}
+    .stat:last-child{border-right:0}
+    .stat strong{display:block;font:700 2rem "Space Grotesk";letter-spacing:-.03em}
+    .stat span{color:var(--muted);font-size:.87rem}
+    .section{padding:82px 0}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:28px}
+    .section-kicker{color:var(--accent);text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;font-weight:700}
+    .section-title{font-size:clamp(2rem,4vw,3.1rem);margin-top:8px}
+    .section-intro{color:var(--muted);max-width:680px;margin:10px 0 0}
+    .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px}
+    .panel{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+    .about-text p{margin:0 0 16px;color:#d2dbe8}
+    .about-text p:last-child{margin-bottom:0}
+    .pill-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+    .pill{font-size:.8rem;color:#cbd7e8;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.025)}
+    .principles{display:grid;gap:14px}
+    .principle{display:flex;gap:13px;align-items:flex-start}
+    .principle-icon{flex:0 0 35px;width:35px;height:35px;display:grid;place-items:center;border-radius:10px;background:rgba(104,213,255,.08);border:1px solid rgba(104,213,255,.2);color:var(--accent)}
+    .principle h3{font-size:1rem;margin-bottom:4px}
+    .principle p{margin:0;color:var(--muted);font-size:.9rem}
+    .timeline{position:relative}
+    .timeline::before{content:"";position:absolute;left:16px;top:10px;bottom:0;width:1px;background:linear-gradient(var(--accent),rgba(104,213,255,0))}
+    .role{position:relative;padding-left:52px;margin-bottom:28px}
+    .dot{position:absolute;left:8px;top:8px;width:17px;height:17px;border-radius:50%;background:var(--bg);border:4px solid var(--accent);box-shadow:0 0 0 4px rgba(104,213,255,.08)}
+    .role-top{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .role h3{font-size:1.25rem}
+    .role-company{color:var(--accent);font-weight:700}
+    .role-date{color:var(--muted);font-size:.88rem}
+    .role ul{margin:12px 0 0;padding-left:18px;color:#cbd6e5}
+    .role li{margin:7px 0}
+    .role li::marker{color:#6ad6ff}
+    .project-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:20px}
+    .project{position:relative;overflow:hidden}
+    .project.featured{min-height:360px}
+    .project::after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-90px;top:-90px;background:radial-gradient(circle,rgba(104,213,255,.18),transparent 68%);pointer-events:none}
+    .tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+    .tag{font-size:.72rem;font-weight:700;letter-spacing:.04em;color:#c8d5e6;padding:6px 9px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.022)}
+    .project h3{font-size:1.8rem;margin-bottom:10px}
+    .project p{color:var(--muted);max-width:700px}
+    .project-points{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:20px 0}
+    .project-point{padding:12px 13px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:#d5deea;font-size:.86rem}
+    .project-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .project.small h3{font-size:1.4rem}
+    .project.small p{font-size:.9rem}
+    .credentials{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .credential-list{display:grid;gap:10px}
+    .credential{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:13px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02)}
+    .credential strong{font-size:.9rem}
+    .credential span{font-size:.76rem;color:var(--muted);white-space:nowrap}
+    .skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .skill{padding:15px 15px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02)}
+    .skill b{display:block;font-size:.88rem;margin-bottom:4px}
+    .skill span{display:block;color:var(--muted);font-size:.76rem;line-height:1.45}
+    .cta{padding:80px 0 100px}
+    .cta-card{
+      position:relative;overflow:hidden;display:flex;justify-content:space-between;gap:28px;align-items:center;
+      padding:38px;border-radius:28px;border:1px solid rgba(104,213,255,.22);
+      background:linear-gradient(135deg,rgba(104,213,255,.09),rgba(155,140,255,.09));
+    }
+    .cta-card::before{content:"";position:absolute;width:330px;height:330px;border-radius:50%;right:-110px;top:-130px;background:radial-gradient(circle,rgba(155,140,255,.18),transparent 70%);pointer-events:none}
+    .cta-card h2{font-size:clamp(2rem,4vw,3rem);max-width:720px}
+    .cta-card p{color:var(--muted);max-width:720px;margin:10px 0 0}
+    footer{border-top:1px solid var(--line);padding:24px 0 40px;color:#8190a7;font-size:.82rem}
+    .footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+    @media(max-width:960px){
+      .hero-grid,.about-grid,.project-grid,.credentials{grid-template-columns:1fr}
+      .hero-visual{min-height:560px;max-width:620px;margin:0 auto;width:100%}
+      .skill-grid{grid-template-columns:repeat(2,1fr)}
+      .stat-grid{grid-template-columns:repeat(2,1fr)}
+      .stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    }
+    @media(max-width:760px){
+      .nav-links{display:none}.mobile-menu{display:block}
+      .nav-links.open{position:absolute;top:76px;left:0;right:0;display:flex;flex-direction:column;align-items:flex-start;padding:18px 4vw;background:rgba(7,17,31,.96);border-bottom:1px solid var(--line)}
+      .hero{padding-top:64px}.hero-visual{min-height:500px}
+      .portrait-card{width:82%}.portrait-card img{height:450px}.float-card{left:0;bottom:8px;width:225px}
+      .project-points{grid-template-columns:1fr}
+      .section{padding:64px 0}
+    }
+    @media(max-width:560px){
+      .hero h1{font-size:2.8rem}.meta-row{gap:12px;display:grid}
+      .stat-grid,.skill-grid{grid-template-columns:1fr}
+      .stat{border-right:0;border-bottom:1px solid var(--line)}
+      .stat:last-child{border-bottom:0}
+      .portrait-card{position:relative;width:92%;right:auto;margin-left:auto;transform:rotate(0)}
+      .portrait-card img{height:470px}.float-card{left:4px;bottom:4px}
+      .cta-card{padding:28px;align-items:flex-start;flex-direction:column}
     }
   </style>
-
-    <!-- Add this script tag below the existing script tags in the head -->
-<script>
-    $(document).ready(function () {
-        $("#btnDownloadPDF").click(function () {
-            var element = document.getElementById("dvContainer");
-
-            html2pdf(element, {
-                
-                filename: 'Madhulika_Tirupatipanya_Portfolio.pdf',
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a2', orientation: 'portrait', fontSize: 10  }
-            });
-        });
-    });
-</script>
-
-
-
-
- 
-
 </head>
 <body>
-
-  <div id="top-bar">
-    <button id="btnDownloadPDF">Download PDF</button>
-  </div>
-    <form id="form1">
-    <div id="dvContainer">
-
-<div class="resume">
-   <div class="resume_left">
-     <div class="resume_profile">
-       <img src="1.jpg" alt="profile_pic">
-     </div>
-
-     <div class="resume_content">
-       <div class="resume_item resume_info">
-         <div class="title">
-           <p class="bold">Madhulika Tirupatipanya</p>
-           <p class="regular">Designer</p>
-         </div>
-         <ul>
-           <li>
-             <div class="icon">
-               <i class="fas fa-map-signs"></i>
-             </div>
-             <div class="data">
-               Hyderabad, Telangana <br /> India
-             </div>
-           </li>
-           <li>
-             <div class="icon">
-               <i class="fas fa-mobile-alt"></i>
-             </div>
-             <div class="data">
-               +91 9440067714
-             </div>
-           </li>
-           <li>
-             <div class="icon">
-               <i class="fa fa-envelope"></i>
-             </div>
-             <div class="data">
-               madhulika898@gmail.com
-             </div>
-           </li>
-         </ul>
-       </div>
-       <div class="resume_item resume_skills">
-         <div class="title">
-           <p class="bold">skill's</p>
-         </div>
-         <ul>
-           <li>
-             <div class="skill_name">
-               VBA
-             </div>
-             <div class="skill_progress">
-               <span style="width: 80%;"></span>
-             </div>
-             <div class="skill_per">80%</div>
-           </li>
-           <li>
-             <div class="skill_name">
-               SQL
-             </div>
-             <div class="skill_progress">
-               <span style="width: 70%;"></span>
-             </div>
-             <div class="skill_per">70%</div>
-           </li>
-           <li>
-             <div class="skill_name">
-               HTML
-             </div>
-             <div class="skill_progress">
-               <span style="width: 90%;"></span>
-             </div>
-             <div class="skill_per">90%</div>
-           </li>
-           <li>
-             <div class="skill_name">
-               Python
-             </div>
-             <div class="skill_progress">
-               <span style="width: 60%;"></span>
-             </div>
-             <div class="skill_per">60%</div>
-           </li>
-           <li>
-             <div class="skill_name">
-               JS
-             </div>
-             <div class="skill_progress">
-               <span style="width: 88%;"></span>
-             </div>
-             <div class="skill_per">88%</div>
-           </li>
-         </ul>
-       </div>
-       <div class="resume_item resume_skills">
-    <div class="title">
-        <p class="bold">Certifications</p>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">Madhulika<span>.</span></a>
+      <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#work">Work</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact" class="nav-cta">Let's connect</a>
+      </div>
     </div>
-    <ul>
-        <li>
-            <div class="skill_name">
-                <a href="https://www.credly.com/earner/earned/badge/7cb5580e-da56-49ec-8e5a-ba5e49c2abb7" target="_blank">
-                    Azure Fundamentals
-                </a>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><i></i> Automation & Solution Design</div>
+          <h1>I turn messy processes into <span>working systems.</span></h1>
+          <p class="hero-copy">
+            8+ years across banking, insurance and enterprise technology — designing end-to-end automation,
+            workflow and data solutions with Power Platform, VBA, SQL, Power BI, SharePoint, APIs, Snowflake
+            and Python/AI.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="Madhulika_Tirupatipanya_Resume.pdf" download>↓ Download resume</a>
+            <a class="btn" href="https://github.com/MadhulikaTirupatipanya" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a class="btn" href="https://www.linkedin.com/in/madhulika-tirupatipanya-baa5a797/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          </div>
+
+          <div class="meta-row">
+            <span>📍 Hyderabad, India</span>
+            <span>🌐 Open to hybrid / remote</span>
+            <span>✉ <a href="mailto:madhulika898@gmail.com">madhulika898@gmail.com</a></span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="portrait-card">
+            <img src="assets/madhulika-profile.jpg" alt="Madhulika Tirupatipanya">
+          </div>
+          <div class="float-card">
+            <div class="float-label">Current focus</div>
+            <div class="float-value">Automation + AI/ML</div>
+            <div style="margin-top:8px;color:var(--muted);font-size:.82rem">
+              Building practical systems where business processes, data and technology meet.
             </div>
-        </li>
-        <li>
-            <div class="skill_name">
-                <a href="https://www.credly.com/badges/c1030d1c-8b45-4287-aaa5-a60edc8164e0" target="_blank">
-                    Oracle Database SQL 
-                </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="container stat-grid reveal">
+        <div class="stat"><strong>8+</strong><span>years of enterprise technology experience</span></div>
+        <div class="stat"><strong>50+</strong><span>VBA automations delivered at Wells Fargo</span></div>
+        <div class="stat"><strong>30+</strong><span>enhancements across 9 enterprise apps</span></div>
+        <div class="stat"><strong>3</strong><span>domains: banking, insurance & technology operations</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">01 / About</div>
+            <h2 class="section-title">A builder who thinks in systems.</h2>
+            <p class="section-intro">Not just automating a manual step — understanding the process, constraints and downstream impact, then designing the smallest system that solves the real problem.</p>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <div class="panel about-text reveal">
+            <p>
+              My work sits at the intersection of business process understanding and hands-on technology.
+              I work from discovery and stakeholder conversations through feasibility, architecture, development,
+              testing, deployment, documentation and operational handover.
+            </p>
+            <p>
+              I especially enjoy untangling processes that involve multiple systems, messy data, business rules,
+              human handoffs and access constraints — then turning them into controlled, maintainable workflows.
+            </p>
+            <p>
+              I am also extending that foundation into AI/ML through my BITS Pilani postgraduate programme,
+              with coursework spanning machine learning, feature engineering, classification, deep learning,
+              NLP, text mining and AI/ML application development.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Process discovery</span><span class="pill">Solution architecture</span>
+              <span class="pill">Workflow automation</span><span class="pill">Business rules</span>
+              <span class="pill">Data & integration</span><span class="pill">Operational controls</span>
+              <span class="pill">Stakeholder / SME</span><span class="pill">SOP & handover</span>
             </div>
-        </li>
-        <li>
-            <div class="skill_name">
-                <a href="https://www.coursera.org/account/accomplishments/certificate/DVQDYHDDVFL3" target="_blank">
-                    Agile Meets Design Thinking
-                </a>
+          </div>
+
+          <div class="panel reveal">
+            <div class="principles">
+              <div class="principle">
+                <div class="principle-icon">01</div>
+                <div><h3>Start with the process</h3><p>Find the actual bottleneck, loophole or control issue before choosing a tool.</p></div>
+              </div>
+              <div class="principle">
+                <div class="principle-icon">02</div>
+                <div><h3>Design within constraints</h3><p>Build around access limits, existing infrastructure, maintainability and operational reality.</p></div>
+              </div>
+              <div class="principle">
+                <div class="principle-icon">03</div>
+                <div><h3>Connect the layers</h3><p>Bring user interfaces, data, business rules, automation and reporting into one coherent flow.</p></div>
+              </div>
+              <div class="principle">
+                <div class="principle-icon">04</div>
+                <div><h3>Leave it sustainable</h3><p>Document the workflow, standardize execution and make the solution less dependent on one person.</p></div>
+              </div>
             </div>
-        </li>
-        <li>
-            <div class="skill_name">
-                <a href="https://www.credly.com/badges/2b0766bc-7b30-4471-bdf8-90dcead0bd3d/linked_in_profile" target="_blank">
-                    Snowflake: Data Warehouse
-                </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">02 / Experience</div>
+            <h2 class="section-title">From operational tooling to solution ownership.</h2>
+          </div>
+        </div>
+
+        <div class="panel timeline reveal">
+          <article class="role">
+            <div class="dot"></div>
+            <div class="role-top">
+              <div><h3>Assistant Vice President</h3><div class="role-company">Wells Fargo</div></div>
+              <div class="role-date">May 2024 — Present · Hyderabad</div>
             </div>
-        </li>
-      
-    </ul>
-</div>
+            <ul>
+              <li>Design and deliver end-to-end automation and workflow solutions supporting commercial banking operations.</li>
+              <li>Designed a multi-stage WIP solution spanning SQL extraction, portal data, reconciliation, business rules, ownership mapping and automated distribution.</li>
+              <li>Designed a connected Power Apps + SharePoint + Power BI + Power Automate operating model for tracking, guidance, analytics and automated communication.</li>
+              <li>Delivered 50+ VBA automations across operational reporting, SharePoint updates, archival, report generation and Outlook communication.</li>
+              <li>Work directly with business users and SMEs to identify process loopholes and design feasible solutions within enterprise constraints.</li>
+            </ul>
+          </article>
 
-       <div class="resume_item resume_social">
-         <div class="title">
-           <p class="bold">Social</p>
-         </div>
-         <ul>
-           <li>
-             <div class="icon">
-               <i class="fab fa-twitter-square"></i>
-             </div>
-             <div class="data">
-               <p class="semi-bold">Twitter</p>
-               <p>madhulika898@twitter</p>
-             </div>
-           </li>
-           
-           <li>
-             <div class="icon">
-               <i class="fab fa-linkedin-square"></i>
-             </div>
-             <div class="data">
-               <p class="semi-bold">Linkedin</p>
-               <p>Madhulika Tirupatipanya</p>
-             </div>
-           </li>
-         </ul>
-       </div>
-     </div>
-  </div>
-  <div class="resume_right">
-    <div class="resume_item resume_about">
-        <div class="title">
-           <p class="bold">About</p>
-         </div>
-        <p>Result oriented individual, working towards developing solutions with more than four years of expertise in VBA,SQL, JavaScript and Python
-Hands-on experience with front end development with languages like HTML/CSS,Bootstrap and javascript,
-Persuasive communicator with exceptional relationship management skills with the ability to relate to people at any level of business and management. Highly ethical, trustworthy and discreet.</p>
+          <article class="role">
+            <div class="dot"></div>
+            <div class="role-top">
+              <div><h3>Senior Software Engineer</h3><div class="role-company">Accenture</div></div>
+              <div class="role-date">Feb 2021 — May 2024 · India</div>
+            </div>
+            <ul>
+              <li>Developed and supported 9 enterprise VBA applications and delivered 30+ enhancements.</li>
+              <li>Built automation and control solutions across insurance processes, databases and business teams.</li>
+              <li>Developed VB.NET application features and C# / JavaScript / Microsoft Graph integrations with SharePoint.</li>
+              <li>Worked on Snowflake and dbt migration/data-processing flows using external S3 sources, staging, transformation and final-load layers.</li>
+              <li>Supported enterprise application and process migrations from on-premises environments to GCP.</li>
+            </ul>
+          </article>
+
+          <article class="role" style="margin-bottom:0">
+            <div class="dot"></div>
+            <div class="role-top">
+              <div><h3>Quality Analyst</h3><div class="role-company">Amazon Development Centre</div></div>
+              <div class="role-date">Oct 2017 — Feb 2021 · India</div>
+            </div>
+            <ul>
+              <li>Built JavaScript-based tooling to automatically highlight required fields during high-volume catalog validation.</li>
+              <li>Reduced repetitive manual search activity and improved validation efficiency in a quality-controlled operational environment.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">03 / Selected work</div>
+            <h2 class="section-title">Work that shows how I build.</h2>
+            <p class="section-intro">A mix of confidential enterprise solution design and public personal builds. Employer implementations are described at a high level to protect proprietary information.</p>
+          </div>
+        </div>
+
+        <div class="project-grid">
+          <article class="panel project featured reveal">
+            <div class="tag-row">
+              <span class="tag">LIVE PROJECT</span><span class="tag">HTML</span><span class="tag">CSS</span>
+              <span class="tag">JAVASCRIPT</span><span class="tag">AWS S3</span>
+            </div>
+            <h3>Meditation Affirmation Minds</h3>
+            <p>
+              A personal mindfulness web application designed around immersive full-screen video,
+              ambient audio and a deliberately quiet experience. Includes scene switching, ambient sound
+              controls, continuous session timing, timed affirmations and an anonymous real-time community area.
+            </p>
+            <div class="project-points">
+              <div class="project-point">🌊 Full-screen video experience</div>
+              <div class="project-point">🔊 Ambient sound selection + mute/unmute</div>
+              <div class="project-point">✨ Timed affirmations with off mode</div>
+              <div class="project-point">💬 Anonymous real-time chat prototype</div>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-primary" href="http://meditationaffirmminds.s3-website.ap-south-1.amazonaws.com/index.html" target="_blank" rel="noreferrer">Open live app ↗</a>
+              <a class="btn" href="https://github.com/MadhulikaTirupatipanya" target="_blank" rel="noreferrer">View GitHub ↗</a>
+            </div>
+          </article>
+
+          <article class="panel project small reveal">
+            <div class="tag-row"><span class="tag">ENTERPRISE</span><span class="tag">SOLUTION DESIGN</span></div>
+            <h3>Commercial Banking Automation</h3>
+            <p>
+              End-to-end workflow architecture connecting data extraction, reconciliation, business-rule processing,
+              ownership mapping, operational reporting and automated distribution.
+            </p>
+            <div class="pill-list">
+              <span class="pill">SQL</span><span class="pill">VBA</span><span class="pill">SharePoint</span>
+              <span class="pill">Power BI</span><span class="pill">Power Automate</span><span class="pill">Xceptor</span>
+            </div>
+            <div style="margin-top:18px;color:var(--muted);font-size:.82rem">Confidential enterprise implementation · architecture described at a high level</div>
+          </article>
+
+          <article class="panel project small reveal">
+            <div class="tag-row"><span class="tag">POWER PLATFORM</span><span class="tag">WORKFLOW</span></div>
+            <h3>Operational Application Ecosystem</h3>
+            <p>
+              Connected Power Apps, SharePoint, Power BI and Power Automate into one operational flow:
+              user capture → operational data → analytics → automated refresh and distribution.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Power Apps</span><span class="pill">SharePoint</span><span class="pill">Power BI</span><span class="pill">Power Automate</span>
+            </div>
+          </article>
+
+          <article class="panel project small reveal">
+            <div class="tag-row"><span class="tag">DATA ENGINEERING</span><span class="tag">SNOWFLAKE</span></div>
+            <h3>Snowflake / dbt Migration</h3>
+            <p>
+              Data-processing architecture spanning external S3 sources, Snowflake staging, transformation views,
+              target tables and migrated dbt workflows.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Snowflake</span><span class="pill">dbt</span><span class="pill">S3</span><span class="pill">ETL / ELT</span>
+            </div>
+          </article>
+
+          <article class="panel project small reveal">
+            <div class="tag-row"><span class="tag">AI / ML</span><span class="tag">PYTHON</span><span class="tag">BITS PILANI</span></div>
+            <h3>AI/ML Application Work</h3>
+            <p>
+              Ongoing postgraduate work across machine learning, feature engineering, classification,
+              deep learning, NLP, text mining and application development — extending an automation background into AI.
+            </p>
+            <div class="pill-list">
+              <span class="pill">Python</span><span class="pill">Machine Learning</span><span class="pill">NLP</span><span class="pill">Deep Learning</span><span class="pill">Generative AI</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">04 / Capabilities</div>
+            <h2 class="section-title">A practical stack, end to end.</h2>
+          </div>
+        </div>
+
+        <div class="skill-grid reveal">
+          <div class="skill"><b>Automation</b><span>Process automation · Workflow design · VBA · Excel automation · Process controls</span></div>
+          <div class="skill"><b>Power Platform</b><span>Power Apps · Power Automate · Power BI · SharePoint · Microsoft 365</span></div>
+          <div class="skill"><b>Data</b><span>SQL · Oracle SQL · Snowflake · dbt · ETL/ELT · Data transformation</span></div>
+          <div class="skill"><b>Programming</b><span>Python · JavaScript · HTML · C# · VB.NET · .NET</span></div>
+          <div class="skill"><b>Integration</b><span>REST APIs · Microsoft Graph API · SharePoint APIs · S3 · GCP</span></div>
+          <div class="skill"><b>Solution Design</b><span>Requirements · Feasibility · Architecture · Business rules · Stakeholder management</span></div>
+          <div class="skill"><b>AI / ML</b><span>Machine learning · Deep learning · NLP · Generative AI concepts</span></div>
+          <div class="skill"><b>Operational Excellence</b><span>SME leadership · SOPs · Documentation · Deployment · Continuous improvement</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="credentials">
+          <div class="panel reveal">
+            <div class="section-kicker">Credentials</div>
+            <h2 class="section-title" style="font-size:2rem">Certifications</h2>
+            <div class="credential-list" style="margin-top:18px">
+              <div class="credential"><strong>Microsoft Azure DevOps Engineer Expert</strong><span>AZ-400</span></div>
+              <div class="credential"><strong>Microsoft Azure Administrator</strong><span>AZ-104</span></div>
+              <div class="credential"><strong>Microsoft Azure Fundamentals</strong><span>AZ-900</span></div>
+              <div class="credential"><strong>Oracle Database SQL Certified Associate</strong><span>Oracle</span></div>
+            </div>
+          </div>
+
+          <div class="panel reveal">
+            <div class="section-kicker">Education</div>
+            <h2 class="section-title" style="font-size:2rem">Building depth in AI/ML.</h2>
+            <div style="margin-top:18px">
+              <div style="font-weight:700;font-size:1.05rem">BITS Pilani</div>
+              <div style="color:var(--accent);margin-top:3px">Post Graduate Programme in Artificial Intelligence & Machine Learning</div>
+              <div style="color:var(--muted);font-size:.86rem;margin-top:8px">2025 — 2026 · In progress</div>
+            </div>
+            <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--line)">
+              <div style="font-weight:700;font-size:1.05rem">JNTU</div>
+              <div style="color:var(--muted);margin-top:3px">B.Tech in Aeronautical Engineering · 2017</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container">
+        <div class="cta-card reveal">
+          <div>
+            <div class="section-kicker">Let's build something useful</div>
+            <h2>Looking for an automation specialist who can own the solution, not just the script?</h2>
+            <p>Open to hybrid and remote opportunities in automation, solution design, Power Platform, process ownership and AI-enabled workflow engineering.</p>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;flex:0 0 auto">
+            <a class="btn btn-primary" href="mailto:madhulika898@gmail.com">Email me</a>
+            <a class="btn" href="https://www.linkedin.com/in/madhulika-tirupatipanya-baa5a797/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Madhulika Tirupatipanya</span>
+      <span>Automation · Solution Design · Data · AI/ML</span>
     </div>
-    <div class="resume_item resume_work">
-        <div class="title">
-           <p class="bold">Work Experience</p>
-         </div>
-        <ul>
-            <li>
+  </footer>
 
-                <div class="date">2017 - 2021</div> 
-                <div class="info">
-                     <p class="semi-bold">Amazon Development Centre</p> 
-                  <p> Served as Subject Matter Expert (SME) for diverse teams, specializing in developing Standard Operating Procedures (SOPs). Demonstrated proficiency in data collection, visualization, and report generation to identify and enhance process efficiencies.</p>
-                </div>
-            </li>
-            <li>
-              <div class="date">2021 - Present</div>
-              <div class="info">
-                     <p class="semi-bold">Accenture</p> 
-                  <p> Identified, designed, develop and implement VBA, Oracle and Snowflake based applications to ensure business process function at optimum efficiency without risk of error and ensure that their configuration is properly handled.</p>
-                </div>
-            </li>
-            <li>
-        </ul>
-    </div>
-    <div class="resume_item resume_education">
-      <div class="title">
-           <p class="bold">Education</p>
-         </div>
-      <ul>
-            <li>
-                <div class="date">2013 - 2017</div> 
-                <div class="info">
-                     <p class="semi-bold">Aeronautical Engineering (JNTU University)</p> 
-                  <p>Completed Bachelor's degree in Aeronautical Engineering</p>
-                </div>
-            </li>
-            <li>
-              <div class="date">2011 - 2013</div>
-              <div class="info">
-                     <p class="semi-bold">Narayana Jr College</p> 
-                  <p>Completed Intermidiate studies in Maths, Physics and Chemistry</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="resume_item resume_hobby">
-      <div class="title">
-           <p class="bold">Hobby</p>
-         </div>
-       <ul>
-         <li><i class="fas fa-book"></i></li>
-         <li><i class="fas fa-gamepad"></i></li>
-         <li><i class="fas fa-music"></i></li>
-         <li><i class="fab fa-pagelines"></i></li>
-      </ul>
-    </div>
-  </div>
-</div>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
+    const menuButton = document.getElementById("mobileMenu");
+    const navLinks = document.getElementById("navLinks");
 
+    menuButton.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
 
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
 
-    </div>
-   
-    </form>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
