@@ -10,6 +10,7 @@ A responsive portfolio site focused on Automation & Solution Design, Power Platf
 ## Live project
 Meditation Affirmation Minds:
 http://meditationaffirmminds.s3-website.ap-south-1.amazonaws.com/index.html
+Book Recommendation App: https://book-recommendation-system-nrymui4uqcgfac5keyajqj.streamlit.app/
 
 ## Deploy
 Upload the contents of this folder to the GitHub Pages repository that currently hosts:
